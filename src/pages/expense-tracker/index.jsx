@@ -3,7 +3,7 @@ import { useAddTransaction } from '../../hooks/useAddTransaction';
 import { useGetTransactions } from '../../hooks/useGetTransactions';
 import { useGetUserInfo } from '../../hooks/useGetUserInfo';
 import { signOut } from 'firebase/auth';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Navigate } from 'react-router-dom';
 
 import './styles.css';
 import { auth } from '../../config/firebase-config';
@@ -17,7 +17,7 @@ export const ExpenseTracker = () => {
   const [transactionAmount, setTransactionAmount] = useState(0);
   const [transactionType, setTransactionType] = useState('expense');
 
-  const { name, profilePhoto } = useGetUserInfo();
+  const { name, profilePhoto, isAuth } = useGetUserInfo();
 
   const { balance, income, expenses } = transactionTotals;
 
@@ -41,6 +41,10 @@ export const ExpenseTracker = () => {
       console.error(error);
     }
   };
+
+  if (!isAuth) {
+    return <Navigate to="/" />;
+  }
 
   return (
     <>
