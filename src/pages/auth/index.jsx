@@ -31,12 +31,12 @@ export const Auth = () => {
   }
 
   return (
-    <div className="login-page">
+    <main className="login-page">
       <p>Sign In With Google to Continue</p>
       <button className="login-with-google-btn" onClick={signInWithGoogle}>
         {' '}
         Sign in With Google
       </button>
-    </div>
+    </main>
   );
 };
